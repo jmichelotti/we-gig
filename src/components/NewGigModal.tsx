@@ -1,32 +1,102 @@
-import { IonButton, IonCol, IonGrid, IonRow } from '@ionic/react';
-import React from 'react';
+import { IonButton, IonCol, IonGrid, IonInput, IonItem, IonLabel, IonRow } from '@ionic/react';
+import React, { useState } from 'react';
 import './NewGigModal.css';
 
+interface newGig {
+    company: string,
+    pay: number,
+    distance: number,
+    time: number,
+    store: string
+}
+
 const NewGigModal: React.FC = () => {
+    const [companyText, setCompanyText] = useState("");
+    const [payNum, setPayNum] = useState(0);
+    const [distanceNum, setDistanceNum] = useState(0);
+    const [timeNum, setTimeNum] = useState(0);
+    const [storeText, setStoreText] = useState("");
+
+    const info: newGig = {
+        company: companyText,
+        pay: payNum,
+        distance: distanceNum,
+        time: timeNum,
+        store: storeText
+    }
     return (
         <>
-            <IonGrid style={{ 'marginInline': '1%'}}>
+            <IonGrid style={{ 'marginInline': '1%' }}>
+                <IonRow>
+                    <h3 className="center-header">New Gig</h3>
+                </IonRow>
+
                 <IonRow>
                     <IonCol>
-                        <div>1 of 2</div>
+                        <IonItem>
+                            <IonLabel>Gig Company:</IonLabel>
+                        </IonItem>
                     </IonCol>
                     <IonCol>
-                        <div>2 of 2</div>
+                        <IonItem>
+                            <IonInput placeholder="Enter Input" onIonChange={e => setCompanyText(e.detail.value!)}></IonInput>
+                        </IonItem>
                     </IonCol>
                 </IonRow>
+
                 <IonRow>
                     <IonCol>
-                        <div>1 of 3</div>
+                        <IonItem>
+                            <IonLabel>Total Pay:</IonLabel>
+                        </IonItem>
                     </IonCol>
                     <IonCol>
-                        <div>2 of 3</div>
+                        <IonItem>
+                            <IonInput placeholder="Enter Input" onIonChange={e => setPayNum(parseInt(e.detail.value!, 10))}></IonInput>
+                        </IonItem>
+                    </IonCol>
+                </IonRow>
+
+                <IonRow>
+                    <IonCol>
+                        <IonItem>
+                            <IonLabel>Total Distance:</IonLabel>
+                        </IonItem>
                     </IonCol>
                     <IonCol>
-                        <div>3 of 3</div>
+                        <IonItem>
+                            <IonInput placeholder="Enter Input" onIonChange={e => setDistanceNum(parseInt(e.detail.value!, 10))}></IonInput>
+                        </IonItem>
+                    </IonCol>
+                </IonRow>
+
+                <IonRow>
+                    <IonCol>
+                        <IonItem>
+                            <IonLabel>Estimated Time:</IonLabel>
+                        </IonItem>
+                    </IonCol>
+                    <IonCol>
+                        <IonItem>
+                            <IonInput placeholder="Enter Input"  onIonChange={e => setTimeNum(parseInt(e.detail.value!, 10))}></IonInput>
+                        </IonItem>
+                    </IonCol>
+                </IonRow>
+
+                <IonRow>
+                    <IonCol>
+                        <IonItem>
+                            <IonLabel>Store:</IonLabel>
+                        </IonItem>
+                    </IonCol>
+                    <IonCol>
+                        <IonItem>
+                            <IonInput placeholder="Enter Input"  onIonChange={e => setStoreText(e.detail.value!)}></IonInput>
+                        </IonItem>
                     </IonCol>
                 </IonRow>
             </IonGrid>
-            <IonButton href='/tab2'>Save Gig</IonButton>
+            <IonButton href='/tab2' onClick={() => console.log(info)}>Save Gig</IonButton>
         </>
     );
 };
