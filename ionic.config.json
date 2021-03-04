@@ -1,0 +1,7 @@
+{
+  "name": "we-gig",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "react"
+}
