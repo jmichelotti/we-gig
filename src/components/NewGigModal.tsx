@@ -1,14 +1,8 @@
 import { IonButton, IonCol, IonGrid, IonInput, IonItem, IonLabel, IonRow } from '@ionic/react';
 import React, { useState } from 'react';
 import './NewGigModal.css';
-
-interface newGig {
-    company: string,
-    pay: number,
-    distance: number,
-    time: number,
-    store: string
-}
+import { CurrentGig } from '../models/CurrentGig';
+import axios from 'axios';
 
 const NewGigModal: React.FC = () => {
     const [companyText, setCompanyText] = useState("");
@@ -17,13 +11,23 @@ const NewGigModal: React.FC = () => {
     const [timeNum, setTimeNum] = useState(0);
     const [storeText, setStoreText] = useState("");
 
-    const info: newGig = {
+    const info: CurrentGig = {
         company: companyText,
         pay: payNum,
         distance: distanceNum,
         time: timeNum,
         store: storeText
     }
+
+    const updateCurrGig = async () => {
+        const day = new Date();
+        console.log(day.getHours());
+        console.log(day.getMinutes());
+        console.log(day.getSeconds());
+        const response = await axios.put("http://localhost:3000/currentGigs/1", info);
+    };
+
+
     return (
         <>
             <IonGrid style={{ 'marginInline': '1%' }}>
@@ -78,7 +82,7 @@ const NewGigModal: React.FC = () => {
                     </IonCol>
                     <IonCol>
                         <IonItem>
-                            <IonInput placeholder="Enter Input"  onIonChange={e => setTimeNum(parseInt(e.detail.value!, 10))}></IonInput>
+                            <IonInput placeholder="Enter Input" onIonChange={e => setTimeNum(parseInt(e.detail.value!, 10))}></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
@@ -91,12 +95,12 @@ const NewGigModal: React.FC = () => {
                     </IonCol>
                     <IonCol>
                         <IonItem>
-                            <IonInput placeholder="Enter Input"  onIonChange={e => setStoreText(e.detail.value!)}></IonInput>
+                            <IonInput placeholder="Enter Input" onIonChange={e => setStoreText(e.detail.value!)}></IonInput>
                         </IonItem>
                     </IonCol>
                 </IonRow>
             </IonGrid>
-            <IonButton href='/tab2' onClick={() => console.log(info)}>Save Gig</IonButton>
+            <IonButton onClick={updateCurrGig}>Start Gig</IonButton>
         </>
     );
 };

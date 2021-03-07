@@ -1,9 +1,12 @@
-[
+{
+  "currentGigs": [
     {
-        "company": "Instacart",
-        "pay": 10,
-        "distance": 2,
-        "time": 20,
-        "store": "Giant"
+      "company": "t",
+      "pay": 99,
+      "distance": 9,
+      "time": 9,
+      "store": "t",
+      "id": 1
     }
-]
+  ]
+}
