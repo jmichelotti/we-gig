@@ -26,7 +26,7 @@ const Tab2: React.FC = () => {
     <IonPage>
       <IonHeader>
         <IonToolbar>
-          <IonTitle>Current Gig</IonTitle>
+          <IonTitle>Current Gig1</IonTitle>
         </IonToolbar>
       </IonHeader>
       <IonContent fullscreen>
