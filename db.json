@@ -1,11 +1,18 @@
 {
   "currentGigs": [
     {
-      "company": "t",
-      "pay": 99,
-      "distance": 9,
-      "time": 9,
-      "store": "t",
+      "company": "Doordash",
+      "pay": 2,
+      "distance": 2,
+      "time": 2,
+      "store": "thnsth",
+      "timestamps": {
+        "startTime": 1615242658565,
+        "rArriveTime": 1615242672516,
+        "rPickupTime": 1615242674866,
+        "cArriveTime": 1615242684269,
+        "endTime": 1615242689038
+      },
       "id": 1
     }
   ]

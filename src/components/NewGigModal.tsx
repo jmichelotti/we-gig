@@ -3,6 +3,7 @@ import React, { useState } from 'react';
 import './NewGigModal.css';
 import { CurrentGig } from '../models/CurrentGig';
 import axios from 'axios';
+import { Timestamps } from '../models/Timestamps';
 
 const NewGigModal: React.FC = () => {
     const [companyText, setCompanyText] = useState("");
@@ -10,20 +11,20 @@ const NewGigModal: React.FC = () => {
     const [distanceNum, setDistanceNum] = useState(0);
     const [timeNum, setTimeNum] = useState(0);
     const [storeText, setStoreText] = useState("");
+    const [timestamps, setTimestamps] = useState({} as Timestamps);
 
     const info: CurrentGig = {
         company: companyText,
         pay: payNum,
         distance: distanceNum,
         time: timeNum,
-        store: storeText
+        store: storeText,
+        timestamps: timestamps
     }
 
     const updateCurrGig = async () => {
         const day = new Date();
-        console.log(day.getHours());
-        console.log(day.getMinutes());
-        console.log(day.getSeconds());
+        timestamps.startTime = day.getTime();
         const response = await axios.put("http://localhost:3000/currentGigs/1", info);
     };
 
@@ -100,7 +101,7 @@ const NewGigModal: React.FC = () => {
                     </IonCol>
                 </IonRow>
             </IonGrid>
-            <IonButton onClick={updateCurrGig}>Start Gig</IonButton>
+            <IonButton href="/CurrentGigScreen" onClick={updateCurrGig}>Start Gig</IonButton>
         </>
     );
 };
