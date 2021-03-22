@@ -12,6 +12,15 @@ const NewGigModal: React.FC = () => {
     const [timeNum, setTimeNum] = useState(0);
     const [storeText, setStoreText] = useState("");
     const [timestamps, setTimestamps] = useState({} as Timestamps);
+    const [imageText, setImageText] = useState({});
+
+    // interface data {
+    //     analyzeResult: [
+    //     readResults: [
+
+    //     ]
+    // ]
+    // }
 
     const info: CurrentGig = {
         company: companyText,
@@ -27,6 +36,22 @@ const NewGigModal: React.FC = () => {
         timestamps.startTime = day.getTime();
         const response = await axios.put("http://localhost:3000/currentGigs/1", info);
     };
+
+    const getImageText = async () => {
+        const text2 = axios.get("https://eastus.api.cognitive.microsoft.com/vision/v3.0/read/analyzeResults/c8e7121b-f5b9-4739-bec0-e84578f16e11", {
+            headers: {
+                'Ocp-Apim-Subscription-Key': 'e8735e46ca744b2ca52a668109948856'
+            }
+        })
+            .then(response => {
+                // If request is good...
+                console.log(response.data);
+                setImageText(response.data);
+            })
+            .catch((error) => {
+                console.log('error ' + error);
+            });
+    }
 
 
     return (
@@ -101,6 +126,7 @@ const NewGigModal: React.FC = () => {
                     </IonCol>
                 </IonRow>
             </IonGrid>
+            <IonButton onClick={getImageText}>Get Text From Image</IonButton>
             <IonButton href="/CurrentGigScreen" onClick={updateCurrGig}>Start Gig</IonButton>
         </>
     );

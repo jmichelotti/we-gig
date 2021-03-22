@@ -1,0 +1,21 @@
+# https://westcentralus.dev.cognitive.microsoft.com/docs/services/computer-vision-v3-1-ga/operations/56f91f2e778daf14a499f21b
+@xbaseUri = https://michelotti-computer-vision.cognitiveservices.azure.com
+@baseUri = https://eastus.api.cognitive.microsoft.com
+@csKey = e8735e46ca744b2ca52a668109948856
+
+# First call the /analyze endpoint
+POST https://eastus.api.cognitive.microsoft.com/vision/v3.0/read/analyze
+Content-Type: application/json
+Ocp-Apim-Subscription-Key: {{csKey}}
+
+{
+    "url": "https://freshfitfuel.blob.core.windows.net/images/door-dash-test.jpg"
+}
+
+
+
+### URL below was returned in HTTP "Operation-Location" response header from previos call
+### Request below has the *actual* results
+
+GET https://eastus.api.cognitive.microsoft.com/vision/v3.0/read/analyzeResults/c8e7121b-f5b9-4739-bec0-e84578f16e11
+Ocp-Apim-Subscription-Key: {{csKey}}
