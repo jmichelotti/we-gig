@@ -25,6 +25,7 @@ const NewGigModal: React.FC = () => {
     const updateCurrGig = async () => {
         const day = new Date();
         timestamps.startTime = day.getTime();
+        console.log(info);
         const response = await axios.put("http://localhost:3000/currentGigs/1", info);
     };
 

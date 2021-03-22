@@ -5,6 +5,7 @@ import { CurrentGig } from '../models/CurrentGig';
 import axios from 'axios';
 // @ts-ignore
 import ReactStopwatchTimer from 'react-stopwatch-timer';
+import { Timestamps } from '../models/Timestamps';
 
 const CurrentGigScreen: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
@@ -51,13 +52,30 @@ const CurrentGigScreen: React.FC = () => {
     setHasArrivedAtCust(true);
     setTimeToArriveAtCust((currGig.timestamps.cArriveTime - currGig.timestamps.rPickupTime) / 1000);
   }
+  
+  const [timestamps, setTimestamps] = useState({} as Timestamps);
+  const empty: CurrentGig = {
+    company: "",
+    pay: 0,
+    distance: 0,
+    time: 0,
+    store: "",
+    timestamps: timestamps
+  };
 
   const finishedDelivery = async () => {
     const day = new Date();
     currGig.timestamps.endTime = day.getTime();
-    const response = await axios.put("http://localhost:3000/currentGigs/1", currGig);
     setHasFinishedDelivery(true);
     setTimeToDeliverToCust((currGig.timestamps.endTime - currGig.timestamps.cArriveTime) / 1000);
+    const response = axios.put("http://localhost:3000/currentGigs/1", empty);
+    const response2 = axios.put("http://localhost:3000/completedGigs/1", currGig);
+    axios.all([response, response2]).then(axios.spread((...responses) => {
+      const response = responses[0]
+      const response2 = responses[1]
+    })).catch(errors => {
+      console.log('error', errors);
+    })
   }
 
   const fromTime = new Date(0, 0, 0, 0, 0, 0, 0);
@@ -85,15 +103,15 @@ const CurrentGigScreen: React.FC = () => {
               displayCircle={true} color="gray" hintColor="red" fromTime={fromTime} />
           </div>
           <div className="timestamp-buttons">
-            { (hasArrivedAtResturant == false) && <IonButton size="large" onClick={arrivedAtResturant}>Arrived at {currGig.store}</IonButton> }
-            { (hasPickedUpFood == false) && <IonButton size="large" onClick={pickedUpFood}>Picked up food</IonButton> }
-            { (hasArrivedAtCust == false) && <IonButton size="large" onClick={arrivedAtCust}>Arrived at drop-off location</IonButton> }
-            { (hasFinishedDelivery == false) && <IonButton size="large" onClick={finishedDelivery}>Completed Delivery</IonButton> }
+            {(hasArrivedAtResturant == false) && <IonButton size="large" onClick={arrivedAtResturant}>Arrived at {currGig.store}</IonButton>}
+            {(hasPickedUpFood == false) && <IonButton size="large" onClick={pickedUpFood}>Picked up food</IonButton>}
+            {(hasArrivedAtCust == false) && <IonButton size="large" onClick={arrivedAtCust}>Arrived at drop-off location</IonButton>}
+            {(hasFinishedDelivery == false) && <IonButton size="large" onClick={finishedDelivery}>Completed Delivery</IonButton>}
           </div>
-          { (hasArrivedAtResturant == true) && <p>Time to arrive at resturant: {diffStartToRest}</p> }
-          { (hasPickedUpFood == true) && <p>It took {timeToGetFoodFromRest} seconds to get the food from the resturant</p> }
-          { (hasArrivedAtCust == true) && <p>It took {timeToArriveAtCust} seconds to get to the customer's house</p> }
-          { (hasFinishedDelivery == true) && <p>It took {timeToDeliverToCust} seconds to delivery the food to the customer</p>}
+          {(hasArrivedAtResturant == true) && <p>Time to arrive at resturant: {diffStartToRest}</p>}
+          {(hasPickedUpFood == true) && <p>It took {timeToGetFoodFromRest} seconds to get the food from the resturant</p>}
+          {(hasArrivedAtCust == true) && <p>It took {timeToArriveAtCust} seconds to get to the customer's house</p>}
+          {/* {(hasFinishedDelivery == true) && <p>It took {timeToDeliverToCust} seconds to delivery the food to the customer</p>} */}
         </div>
       </IonContent>
     </IonPage>
