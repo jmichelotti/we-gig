@@ -1,7 +1,7 @@
 import { IonButton, IonCol, IonGrid, IonInput, IonItem, IonLabel, IonRow } from '@ionic/react';
 import React, { useState } from 'react';
 import './NewGigModal.css';
-import { CurrentGig } from '../models/CurrentGig';
+import { Gig } from '../models/Gig';
 import axios from 'axios';
 import { Timestamps } from '../models/Timestamps';
 
@@ -10,23 +10,27 @@ const NewGigModal: React.FC = () => {
     const [payNum, setPayNum] = useState(0);
     const [distanceNum, setDistanceNum] = useState(0);
     const [timeNum, setTimeNum] = useState(0);
+    const [databaseCounter, setDatabaseCounter] = useState(2);
     const [storeText, setStoreText] = useState("");
     const [timestamps, setTimestamps] = useState({} as Timestamps);
 
-    const info: CurrentGig = {
+    const info: Gig = {
         company: companyText,
         pay: payNum,
         distance: distanceNum,
         time: timeNum,
         store: storeText,
-        timestamps: timestamps
+        timestamps: timestamps,
+        completed: false,
+        completedDatabaseNum: databaseCounter
     }
 
     const updateCurrGig = async () => {
         const day = new Date();
         timestamps.startTime = day.getTime();
         console.log(info);
-        const response = await axios.put("http://localhost:3000/currentGigs/1", info);
+        const url = "http://localhost:3000/currentGigs/1";
+        const response = await axios.put(url, info);
     };
 
 

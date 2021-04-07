@@ -2,12 +2,12 @@ import { IonContent, IonHeader, IonList, IonPage, IonTitle, IonToolbar, useIonVi
 import axios from 'axios';
 import { useState } from 'react';
 import ExploreContainer from '../components/ExploreContainer';
-import { CurrentGig } from '../models/CurrentGig';
+import { Gig } from '../models/Gig';
 import './CompletedGigs.css';
 
 const CompletedGigs: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [completedGigs, setCompletedGigs] = useState([] as CurrentGig[]);
+  const [completedGigs, setCompletedGigs] = useState([] as Gig[]);
   const [averagePay, setAveragePay] = useState(0);
 
   useIonViewDidEnter(() => {
@@ -22,6 +22,10 @@ const CompletedGigs: React.FC = () => {
 
   let totalPay: number = 0;
   completedGigs.forEach(a => totalPay += a.pay);
+  let totalMiles: number = 0;
+  completedGigs.forEach(a => totalMiles += a.distance);
+  let totalTime: number = 0;
+  completedGigs.forEach(a => totalTime + a.time);
 
   // setAveragePay(totalPay / completedGigs.length);
 
@@ -34,6 +38,8 @@ const CompletedGigs: React.FC = () => {
           </IonToolbar>
         </IonHeader>
           <p>Average Pay: ${totalPay / completedGigs.length}</p>
+          <p>Average Distance: {totalMiles / completedGigs.length} miles</p>
+          <p>Average Time: {totalTime / completedGigs.length} seconds</p>
           <IonList>
             {completedGigs.map((item, i) => (
               <div key={i}>

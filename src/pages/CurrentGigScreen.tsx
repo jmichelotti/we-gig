@@ -1,7 +1,7 @@
 import { IonButton, IonContent, IonHeader, IonPage, IonTitle, IonToolbar, useIonViewDidEnter } from '@ionic/react';
 import './CurrentGigScreen.css';
 import React, { useState } from 'react';
-import { CurrentGig } from '../models/CurrentGig';
+import { Gig } from '../models/Gig';
 import axios from 'axios';
 // @ts-ignore
 import ReactStopwatchTimer from 'react-stopwatch-timer';
@@ -9,7 +9,8 @@ import { Timestamps } from '../models/Timestamps';
 
 const CurrentGigScreen: React.FC = () => {
   const [isLoaded, setIsLoaded] = useState(false);
-  const [currGig, setCurrGig] = useState({} as CurrentGig);
+  const [currGig, setCurrGig] = useState({} as Gig);
+  const [prevGig, setPrevGig] = useState({} as Gig);
   const [hasArrivedAtResturant, setHasArrivedAtResturant] = useState(false);
   const [diffStartToRest, setDiffStartToRest] = useState(0);
   const [hasPickedUpFood, setHasPickedUpFood] = useState(false);
@@ -26,7 +27,14 @@ const CurrentGigScreen: React.FC = () => {
       console.log(response.data);
       setIsLoaded(true);
     };
+    const getPrevGig = async () => {
+      const response2 = await axios.get("http://localhost:3000/currentGigs/2");
+      setPrevGig(response2.data);
+      console.log(response2.data);
+      setIsLoaded(true);
+    };
     getCurrGig();
+    getPrevGig();
   });
 
   const arrivedAtResturant = async () => {
@@ -54,25 +62,34 @@ const CurrentGigScreen: React.FC = () => {
   }
   
   const [timestamps, setTimestamps] = useState({} as Timestamps);
-  const empty: CurrentGig = {
+  const empty: Gig = {
     company: "",
     pay: 0,
     distance: 0,
     time: 0,
     store: "",
-    timestamps: timestamps
+    timestamps: timestamps,
+    completed: false,
+    completedDatabaseNum: currGig.completedDatabaseNum + 1
   };
 
   const finishedDelivery = async () => {
     const day = new Date();
     currGig.timestamps.endTime = day.getTime();
-    setHasFinishedDelivery(true);
     setTimeToDeliverToCust((currGig.timestamps.endTime - currGig.timestamps.cArriveTime) / 1000);
+    currGig.completed = true;
+    prevGig.completedDatabaseNum++;
+    const n = prevGig.completedDatabaseNum;
     const response = axios.put("http://localhost:3000/currentGigs/1", empty);
-    const response2 = axios.put("http://localhost:3000/completedGigs/1", currGig);
-    axios.all([response, response2]).then(axios.spread((...responses) => {
+    const response2 = axios.put("http://localhost:3000/currentGigs/2", prevGig);
+    const response3 = axios.put("http://localhost:3000/currentGigs/" + n, currGig);
+    setHasArrivedAtCust(false);
+    setHasArrivedAtResturant(false);
+    setHasPickedUpFood(false);
+    axios.all([response, response2, response3]).then(axios.spread((...responses) => {
       const response = responses[0]
       const response2 = responses[1]
+      const response3 = responses[2]
     })).catch(errors => {
       console.log('error', errors);
     })

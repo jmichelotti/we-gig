@@ -7,39 +7,71 @@
       "time": 0,
       "store": "",
       "timestamps": {},
-      "id": 1
-    }
-  ],
-  "completedGigs": [
-    {
-      "company": "Test",
-      "pay": 9,
-      "distance": 9,
-      "time": 9,
-      "store": "thsoetnhu",
-      "timestamps": {
-        "startTime": 1616411763497,
-        "rArriveTime": 1616411765895,
-        "rPickupTime": 1616411766421,
-        "cArriveTime": 1616411766854,
-        "endTime": 1616411767486
-      },
+      "completed": false,
+      "completedDatabaseNum": 3,
       "id": 1
     },
     {
-      "company": "ee",
-      "pay": 5,
-      "distance": 5,
-      "time": 5,
-      "store": "dd",
-      "timestamps": {
-        "startTime": 1616408732035,
-        "rArriveTime": 1616408734607,
-        "rPickupTime": 1616408735080,
-        "cArriveTime": 1616408735581,
-        "endTime": 1616408736163
-      },
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 5,
       "id": 2
+    },
+    {
+      "company": "First",
+      "pay": 1,
+      "distance": 1,
+      "time": 1,
+      "store": "F",
+      "timestamps": {
+        "startTime": 1617809214106,
+        "rArriveTime": 1617809217463,
+        "rPickupTime": 1617809218723,
+        "cArriveTime": 1617809219883,
+        "endTime": 1617809221008
+      },
+      "completed": true,
+      "completedDatabaseNum": 2,
+      "id": 3
+    },
+    {
+      "company": "Second",
+      "pay": 2,
+      "distance": 2,
+      "time": 2,
+      "store": "S",
+      "timestamps": {
+        "startTime": 1617809256856,
+        "rArriveTime": 1617809261762,
+        "rPickupTime": 1617809262763,
+        "cArriveTime": 1617809263835,
+        "endTime": 1617809264951
+      },
+      "completed": true,
+      "completedDatabaseNum": 2,
+      "id": 4
+    },
+    {
+      "company": "Third",
+      "pay": 3,
+      "distance": 3,
+      "time": 3,
+      "store": "T",
+      "timestamps": {
+        "startTime": 1617809287272,
+        "rArriveTime": 1617809291568,
+        "rPickupTime": 1617809292758,
+        "cArriveTime": 1617809294026,
+        "endTime": 1617809295806
+      },
+      "completed": true,
+      "completedDatabaseNum": 2,
+      "id": 5
     }
   ]
 }
