@@ -1,12 +1,59 @@
 {
   "currentGigs": [
     {
-      "company": "t",
-      "pay": 99,
-      "distance": 9,
-      "time": 9,
-      "store": "t",
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 3,
       "id": 1
+    },
+    {
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 2,
+      "id": 2
+    },
+    {
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 3,
+      "id": 3
+    },
+    {
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 3,
+      "id": 4
+    },
+    {
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 3,
+      "id": 5
     }
   ]
 }

@@ -11,8 +11,8 @@ import {
 import { IonReactRouter } from '@ionic/react-router';
 import { ellipse, square, triangle } from 'ionicons/icons';
 import Tab1 from './pages/Tab1';
-import Tab2 from './pages/Tab2';
-import Tab3 from './pages/Tab3';
+import CurrentGigScreen from './pages/CurrentGigScreen';
+import CompletedGigs from './pages/CompletedGigs';
 
 /* Core CSS required for Ionic components to work properly */
 import '@ionic/react/css/core.css';
@@ -41,11 +41,11 @@ const App: React.FC = () => (
           <Route exact path="/tab1">
             <Tab1 />
           </Route>
-          <Route exact path="/tab2">
-            <Tab2 />
+          <Route exact path="/CurrentGigScreen">
+            <CurrentGigScreen />
           </Route>
-          <Route path="/tab3">
-            <Tab3 />
+          <Route path="/CompletedGigs">
+            <CompletedGigs />
           </Route>
           <Route exact path="/">
             <Redirect to="/tab1" />
@@ -56,11 +56,11 @@ const App: React.FC = () => (
             <IonIcon icon={triangle} />
             <IonLabel>Tab 1</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab2" href="/tab2">
+          <IonTabButton tab="CurrentGigScreen" href="/CurrentGigScreen">
             <IonIcon icon={ellipse} />
             <IonLabel>Tab 2</IonLabel>
           </IonTabButton>
-          <IonTabButton tab="tab3" href="/tab3">
+          <IonTabButton tab="CompletedGigs" href="/CompletedGigs">
             <IonIcon icon={square} />
             <IonLabel>Tab 3</IonLabel>
           </IonTabButton>
