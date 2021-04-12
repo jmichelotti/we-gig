@@ -19,58 +19,40 @@
       "store": "",
       "timestamps": {},
       "completed": false,
-      "completedDatabaseNum": 5,
+      "completedDatabaseNum": 2,
       "id": 2
     },
     {
-      "company": "First",
-      "pay": 1,
-      "distance": 1,
-      "time": 1,
-      "store": "F",
-      "timestamps": {
-        "startTime": 1617809214106,
-        "rArriveTime": 1617809217463,
-        "rPickupTime": 1617809218723,
-        "cArriveTime": 1617809219883,
-        "endTime": 1617809221008
-      },
-      "completed": true,
-      "completedDatabaseNum": 2,
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 3,
       "id": 3
     },
     {
-      "company": "Second",
-      "pay": 2,
-      "distance": 2,
-      "time": 2,
-      "store": "S",
-      "timestamps": {
-        "startTime": 1617809256856,
-        "rArriveTime": 1617809261762,
-        "rPickupTime": 1617809262763,
-        "cArriveTime": 1617809263835,
-        "endTime": 1617809264951
-      },
-      "completed": true,
-      "completedDatabaseNum": 2,
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 3,
       "id": 4
     },
     {
-      "company": "Third",
-      "pay": 3,
-      "distance": 3,
-      "time": 3,
-      "store": "T",
-      "timestamps": {
-        "startTime": 1617809287272,
-        "rArriveTime": 1617809291568,
-        "rPickupTime": 1617809292758,
-        "cArriveTime": 1617809294026,
-        "endTime": 1617809295806
-      },
-      "completed": true,
-      "completedDatabaseNum": 2,
+      "company": "",
+      "pay": 0,
+      "distance": 0,
+      "time": 0,
+      "store": "",
+      "timestamps": {},
+      "completed": false,
+      "completedDatabaseNum": 3,
       "id": 5
     }
   ]

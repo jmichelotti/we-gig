@@ -106,7 +106,8 @@ const NewGigModal: React.FC = () => {
                     </IonCol>
                 </IonRow>
             </IonGrid>
-            <IonButton href="/CurrentGigScreen" onClick={updateCurrGig}>Start Gig</IonButton>
+            {/* <IonButton href="/CurrentGigScreen" onClick={updateCurrGig}>Start Gig</IonButton> */}
+            <IonButton onClick={updateCurrGig}>Start Gig</IonButton>
         </>
     );
 };
